@@ -1,0 +1,57 @@
+<!--pages/index/index.wxml-->
+<view class="page cyber-bg {{themeClass}}">
+  <view class="header">
+    <view class="cyber-title">CYBER ARCHIVE</view>
+    <view class="cyber-subtitle">赛博档案 · 八维人格扫描</view>
+    <view wx:if="{{themeGroupName && themeGroupName !== '中性'}}" class="theme-tag">
+      ▸ 当前主题：{{themeGroupName}}
+    </view>
+  </view>
+
+  <view class="status-card card {{canGenerate ? 'card-active' : ''}}">
+    <view class="status-top">
+      <text class="status-name">{{archiveStatus}}</text>
+      <text class="status-count">{{doneCount}} / 8</text>
+    </view>
+    <view class="status-hint">{{archiveHint}}</view>
+    <view class="status-action {{canGenerate ? 'status-action-ready' : ''}}" bindtap="goResult">
+      {{allDone ? '生成我的赛博档案' : '生成临时档案'}}
+    </view>
+  </view>
+
+  <view class="grid">
+    <view
+      wx:for="{{cells}}" wx:key="key"
+      class="card cell {{item.done ? 'cell-done card-active' : ''}}"
+      bindtap="onCellTap"
+      bindlongpress="onCellLongPress"
+      data-key="{{item.key}}"
+      style="animation-delay: {{index * 60}}ms"
+    >
+      <view class="cell-top">
+        <text class="cell-emoji">{{item.emoji}}</text>
+        <text class="cell-name">{{item.name}}</text>
+      </view>
+      <view wx:if="{{item.done}}" class="cell-result">
+        <view class="cell-label">{{item.label}}</view>
+        <view class="cell-status {{item.isQuick ? 'cell-status-quick' : ''}}">{{item.statusText}}</view>
+      </view>
+      <view wx:else class="cell-action">点击测试 ▸</view>
+    </view>
+  </view>
+
+  <view class="progress">{{doneCount}} / 8</view>
+
+  <view wx:if="{{doneCount > 0}}" class="reset-link" bindtap="onReset">长按格子可单独重测 · 重置全部</view>
+
+  <view wx:if="{{showGuide}}" class="guide-mask" bindtap="dismissGuide">
+    <view class="guide-card card">
+      <view class="guide-title">CYBER ARCHIVE</view>
+      <view class="guide-line">▸ 八个维度从不同角度扫描你</view>
+      <view class="guide-line">▸ 完成任意一个维度即可生成临时档案</view>
+      <view class="guide-line">▸ 数据只保存在你的设备上</view>
+      <view class="guide-line">▸ 长按格子可单独重测某个维度</view>
+      <view class="guide-btn">点击任意处进入</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mbti/index",
+    "pages/zodiac/index",
+    "pages/result/index"
+  ],
+  "subpackages": [
+    {
+      "root": "quiz-pkg",
+      "name": "quiz",
+      "pages": [
+        "pages/quiz/index"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundColor": "#0a0a1a",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#0a0a1a",
+    "navigationBarTitleText": "赛博档案",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

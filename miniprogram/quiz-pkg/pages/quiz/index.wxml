@@ -1,0 +1,42 @@
+<!--quiz-pkg/pages/quiz/index.wxml-->
+<view class="page cyber-bg {{themeClass}}">
+  <view class="topbar">
+    <view class="dim-name">▣ {{dimName}}</view>
+    <view class="progress-text">{{idx + 1}} / {{total}}</view>
+  </view>
+  <view class="bar">
+    <view class="bar-fill" style="width: {{(idx + 1) * 100 / total}}%"></view>
+  </view>
+
+  <view class="quiz-body {{slideClass}}">
+    <view class="question">{{current.q}}</view>
+
+    <view class="options">
+      <view
+        class="option {{selectedIdx === index ? 'selected' : ''}}"
+        wx:for="{{current.options}}"
+        wx:key="text"
+        data-i="{{index}}"
+        bindtap="onAnswer"
+      >
+        <view class="opt-letter">{{letters[index]}}</view>
+        <view class="opt-text">{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{idx > 0}}" class="back-link" bindtap="onBack">← 上一题</view>
+
+  <view wx:if="{{showCheckpoint}}" class="checkpoint-mask">
+    <view class="checkpoint-card card card-active">
+      <view class="checkpoint-kicker">快速扫描完成</view>
+      <view class="checkpoint-label">{{previewResult.label}}</view>
+      <view class="checkpoint-desc">{{previewResult.desc}}</view>
+      <view class="checkpoint-note">这是 4 题初判，已经可以收进临时档案。继续校准会让结果更稳。</view>
+      <view class="checkpoint-actions">
+        <view class="cyber-btn cyber-btn-purple" bindtap="onAcceptQuick">收进档案</view>
+        <view class="cyber-btn" bindtap="onContinueCalibration">继续校准</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,28 @@
+<!--pages/zodiac/index.wxml-->
+<view class="page cyber-bg {{themeClass}}">
+  <view class="header">
+    <view class="cyber-title">ZODIAC</view>
+    <view class="cyber-subtitle">选择你的星座</view>
+  </view>
+
+  <view class="grid">
+    <view
+      class="z-card z-{{item.element}}"
+      wx:for="{{list}}"
+      wx:key="name"
+      data-name="{{item.name}}"
+      bindtap="onPick"
+      style="animation-delay: {{index * 50}}ms"
+    >
+      <view class="z-name">{{item.name}}</view>
+      <view class="z-element">{{item.elementName}}</view>
+    </view>
+  </view>
+
+  <view class="legend">
+    <view class="legend-item z-fire">火象 · 引火者</view>
+    <view class="legend-item z-earth">土象 · 锚</view>
+    <view class="legend-item z-air">风象 · 信号</view>
+    <view class="legend-item z-water">水象 · 深海</view>
+  </view>
+</view>

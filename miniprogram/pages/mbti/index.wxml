@@ -1,0 +1,30 @@
+<!--pages/mbti/index.wxml-->
+<view class="page cyber-bg {{themeClass}}">
+  <view class="header">
+    <view class="cyber-title">MBTI</view>
+    <view class="cyber-subtitle">选择你最接近的人格类型</view>
+  </view>
+
+  <view class="grid">
+    <view
+      class="type-card card group-{{item.group}} {{item.selected ? 'selected' : ''}}"
+      wx:for="{{list}}"
+      wx:key="code"
+      data-code="{{item.code}}"
+      bindtap="onPick"
+      style="animation-delay: {{index * 30}}ms"
+    >
+      <view class="type-code">{{item.code}}</view>
+      <view class="type-label">{{item.label}}</view>
+      <view class="type-desc">{{item.desc}}</view>
+    </view>
+  </view>
+
+  <view class="legend">
+    <view class="legend-item"><view class="dot dot-nt"></view><text>分析师 NT</text></view>
+    <view class="legend-item"><view class="dot dot-nf"></view><text>外交官 NF</text></view>
+    <view class="legend-item"><view class="dot dot-sj"></view><text>守护者 SJ</text></view>
+    <view class="legend-item"><view class="dot dot-sp"></view><text>探险家 SP</text></view>
+  </view>
+</view>
+

@@ -1,0 +1,114 @@
+/**app.wxss — 赛博档案 v2 视觉系统（轻量化 + MBTI 主题色）**/
+
+.container { box-sizing: border-box; }
+
+button { background: initial; }
+button:focus { outline: 0; }
+button::after { border: none; }
+
+page {
+  background: #0a0a1a;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+  font-size: 28rpx;
+  min-height: 100vh;
+}
+
+view, text { box-sizing: border-box; }
+
+/* ============ 主题色系统（4 分组 + 默认） ============ */
+.theme-nt { --theme: #9b6bff; --theme-rgb: 155,107,255; }
+.theme-nf { --theme: #5fd9a8; --theme-rgb: 95,217,168; }
+.theme-sj { --theme: #5fa8ff; --theme-rgb: 95,168,255; }
+.theme-sp { --theme: #ff9b5f; --theme-rgb: 255,155,95; }
+.theme-default { --theme: #a0a8c0; --theme-rgb: 160,168,192; }
+
+/* ============ 容器基底 ============ */
+.cyber-bg {
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(var(--theme-rgb), 0.14), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(var(--theme-rgb), 0.10), transparent 45%),
+    #0a0a1a;
+}
+
+/* ============ 标题（静态发光，无持续抖动） ============ */
+.cyber-title {
+  font-family: "JetBrains Mono", "Menlo", monospace;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 8rpx;
+  text-shadow: 0 0 16rpx rgba(var(--theme-rgb), 0.55);
+}
+
+.cyber-subtitle {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 4rpx;
+  margin-top: 14rpx;
+  text-align: center;
+}
+
+/* 兼容旧 .glitch（静态化，不再持续抖） */
+.glitch {
+  position: relative;
+  display: inline-block;
+  font-family: "JetBrains Mono", "Menlo", monospace;
+  font-size: 52rpx;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 8rpx;
+  text-shadow: 0 0 16rpx rgba(var(--theme-rgb), 0.55);
+}
+
+/* ============ 卡片 ============ */
+.card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1rpx solid rgba(var(--theme-rgb), 0.28);
+  border-radius: 18rpx;
+  padding: 28rpx;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.card-active {
+  border-color: rgba(var(--theme-rgb), 0.65);
+  background: rgba(var(--theme-rgb), 0.08);
+  box-shadow: 0 0 22rpx rgba(var(--theme-rgb), 0.18);
+}
+
+/* 旧 glow-border：迁移到主题色，去掉呼吸动画 */
+.glow-border {
+  border: 1rpx solid rgba(var(--theme-rgb), 0.35);
+  box-shadow: 0 0 10rpx rgba(var(--theme-rgb), 0.18);
+}
+.glow-border-purple {
+  border-color: rgba(var(--theme-rgb), 0.6);
+  background: rgba(var(--theme-rgb), 0.08);
+}
+
+/* ============ 按钮 ============ */
+.cyber-btn {
+  display: inline-block;
+  padding: 22rpx 56rpx;
+  border: 1rpx solid rgba(var(--theme-rgb), 0.7);
+  background: rgba(var(--theme-rgb), 0.08);
+  color: var(--theme);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  letter-spacing: 3rpx;
+  text-align: center;
+  font-weight: 500;
+}
+.cyber-btn:active { transform: scale(0.97); opacity: 0.85; }
+
+.cyber-btn-purple {
+  background: rgba(var(--theme-rgb), 0.22);
+  color: #ffffff;
+  border-color: var(--theme);
+  box-shadow: 0 0 20rpx rgba(var(--theme-rgb), 0.35);
+}
+
+/* ============ 兼容旧角标（默认隐藏） ============ */
+.corner-deco { display: none; }
