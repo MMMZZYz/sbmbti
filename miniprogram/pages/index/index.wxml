@@ -1,11 +1,11 @@
 <!--pages/index/index.wxml-->
 <view class="page cyber-bg {{themeClass}}">
   <view class="header">
-    <view class="cyber-title">CYBER ARCHIVE</view>
-    <view class="cyber-subtitle">赛博档案 · 八维人格扫描</view>
+    <view class="cyber-title">赛博档案</view>
     <view wx:if="{{themeGroupName && themeGroupName !== '中性'}}" class="theme-tag">
-      ▸ 当前主题：{{themeGroupName}}
+      ◆ {{themeGroupName}} · 八维人格扫描
     </view>
+    <view wx:else class="cyber-subtitle">八维人格扫描</view>
   </view>
 
   <view class="status-card card {{canGenerate ? 'card-active' : ''}}">
@@ -13,10 +13,31 @@
       <text class="status-name">{{archiveStatus}}</text>
       <text class="status-count">{{doneCount}} / 8</text>
     </view>
-    <view class="status-hint">{{archiveHint}}</view>
-    <view class="status-action {{canGenerate ? 'status-action-ready' : ''}}" bindtap="goResult">
-      {{allDone ? '生成我的赛博档案' : '生成临时档案'}}
+    <view class="status-bar-track">
+      <view class="status-bar-fill" style="width: {{doneCount * 100 / 8}}%"></view>
     </view>
+    <view class="status-hint">{{archiveHint}}</view>
+    <view wx:if="{{doneCount > 0}}" class="status-reset-row">
+      <text class="reset-tip">轻点格子看详情 · 长按可重测</text>
+      <text class="reset-btn" bindtap="onReset">重置全部</text>
+    </view>
+    <button
+      wx:if="{{canGenerate && !avatarUrl}}"
+      class="status-action status-action-ready status-action-btn"
+      open-type="chooseAvatar"
+      bindchooseavatar="onGenChooseAvatar"
+      bindtap="goResult"
+    >{{allDone ? '生成我的赛博档案' : '生成临时档案'}}</button>
+    <view
+      wx:else
+      class="status-action {{canGenerate ? 'status-action-ready' : ''}}"
+      bindtap="goResult"
+    >{{allDone ? '生成我的赛博档案' : '生成临时档案'}}</view>
+    <view
+      wx:if="{{false}}"
+      class="report-entry"
+      bindtap="goFullReport"
+    >查看完整解读</view>
   </view>
 
   <view class="grid">
@@ -30,28 +51,93 @@
     >
       <view class="cell-top">
         <text class="cell-emoji">{{item.emoji}}</text>
-        <text class="cell-name">{{item.name}}</text>
+        <view class="cell-name-group">
+          <text class="cell-name">{{item.name}}</text>
+          <text wx:if="{{item.hint && !item.done}}" class="cell-hint">{{item.hint}}</text>
+        </view>
+        <view wx:if="{{item.done}}" class="cell-status {{item.isQuick ? 'cell-status-quick' : ''}}">{{item.statusText}}</view>
       </view>
-      <view wx:if="{{item.done}}" class="cell-result">
-        <view class="cell-label">{{item.label}}</view>
-        <view class="cell-status {{item.isQuick ? 'cell-status-quick' : ''}}">{{item.statusText}}</view>
-      </view>
-      <view wx:else class="cell-action">点击测试 ▸</view>
+      <block wx:if="{{item.done}}">
+        <view class="cell-result">
+          <view class="cell-headline">
+            <text class="cell-type">{{item.typeCode}}</text>
+            <text wx:if="{{item.nickname && item.nickname !== item.typeCode}}" class="cell-nick">{{item.nickname}}</text>
+          </view>
+          <view class="cell-desc">{{item.desc}}</view>
+        </view>
+        <view class="cell-detail">查看解读 ›</view>
+      </block>
+      <view wx:elif="{{item.type === 'select'}}" class="cell-action">点击选择 ›</view>
+      <view wx:else class="cell-action">点击测试 ›</view>
     </view>
   </view>
 
-  <view class="progress">{{doneCount}} / 8</view>
-
-  <view wx:if="{{doneCount > 0}}" class="reset-link" bindtap="onReset">长按格子可单独重测 · 重置全部</view>
+  <view class="disclaimer">本测试结果仅供娱乐参考，不构成心理、医学或其他专业建议。</view>
 
   <view wx:if="{{showGuide}}" class="guide-mask" bindtap="dismissGuide">
     <view class="guide-card card">
-      <view class="guide-title">CYBER ARCHIVE</view>
-      <view class="guide-line">▸ 八个维度从不同角度扫描你</view>
-      <view class="guide-line">▸ 完成任意一个维度即可生成临时档案</view>
-      <view class="guide-line">▸ 数据只保存在你的设备上</view>
-      <view class="guide-line">▸ 长按格子可单独重测某个维度</view>
+      <view class="guide-title">赛博档案</view>
+      <view class="guide-line">◆ 八个维度从不同角度扫描你</view>
+      <view class="guide-line">◆ 完成任意一个维度即可生成临时档案</view>
+      <view class="guide-line">◆ 数据只保存在你的设备里</view>
+      <view class="guide-line">◆ 点开已完成的格子，看该维度详细解读</view>
+      <view class="guide-line">◆ 长按格子可单独重测某个维度</view>
       <view class="guide-btn">点击任意处进入</view>
     </view>
   </view>
+
+  <view wx:if="{{showCard}}" class="card-mask" bindtap="closeCard">
+    <view class="card-scroll" catchtap="noop">
+      <view class="id-card card card-active">
+        <view class="idc-top">
+          <text class="idc-brand">赛博档案</text>
+          <text class="idc-serial">{{card.genDate}}</text>
+        </view>
+
+        <view class="avatar-wrap">
+          <view class="avatar-ring-outer"></view>
+          <view class="avatar-ring-mid"></view>
+          <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+            <image wx:if="{{avatarUrl}}" class="avatar-img" src="{{avatarUrl}}" mode="aspectFill" />
+            <text wx:else class="avatar-emoji">{{card.avatar}}</text>
+          </button>
+        </view>
+
+        <view class="idc-faction-row">
+          <text class="idc-faction">{{card.factionIcon}} {{card.faction}}阵营 · {{card.factionSlogan}}</text>
+        </view>
+        <view wx:if="{{card.rarity}}" class="idc-tags">
+          <text class="idc-rarity {{card.rarity.rare ? 'idc-rarity-hot' : ''}}">稀有度 {{card.rarity.pct}}% · {{card.rarity.tier}}</text>
+        </view>
+
+        <view class="idc-hero">
+          <text class="idc-type">{{card.heroType || '???'}}</text>
+          <text class="idc-title">{{card.heroTitle || '待解锁'}}</text>
+        </view>
+
+        <view wx:if="{{card.persona}}" class="idc-quote">“{{card.persona}}”</view>
+
+        <view class="idc-grid">
+          <view class="idc-cell {{item.done ? '' : 'idc-cell-missing'}}" wx:for="{{card.miniCells}}" wx:key="key">
+            <text class="idc-cell-emoji">{{item.emoji}}</text>
+            <text class="idc-cell-code">{{item.done ? item.typeCode : '—'}}</text>
+            <text class="idc-cell-name">{{item.name}}</text>
+          </view>
+        </view>
+
+        <view class="idc-bottom">
+          <text class="idc-progress">已捕捉 {{card.doneCount}}/8 · {{card.archiveTitle}}</text>
+          <text class="idc-hint">微信搜「赛博档案」测测你自己</text>
+        </view>
+      </view>
+
+      <view class="card-actions">
+        <view class="cyber-btn cyber-btn-purple" bindtap="onSaveImage">{{saving ? '生成中...' : '保存卡片'}}</view>
+        <button class="cyber-btn" open-type="share">分享给朋友</button>
+      </view>
+      <view class="card-close" bindtap="closeCard">关闭</view>
+    </view>
+  </view>
+
+  <canvas type="2d" id="share-canvas" class="off-canvas"></canvas>
 </view>

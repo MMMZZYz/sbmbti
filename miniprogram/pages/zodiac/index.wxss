@@ -1,69 +1,96 @@
 /* pages/zodiac/index.wxss */
 .page { padding: 30rpx 30rpx 60rpx; }
 
-.header { padding: 40rpx 0 40rpx; text-align: center; }
+.header { padding: 30rpx 0 24rpx; text-align: center; }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 18rpx;
+/* 滚轮框 */
+.picker-frame {
+  position: relative;
+  margin-top: 16rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(var(--theme-rgb), 0.25);
+  background: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
 }
-
-.z-card {
-  padding: 28rpx 10rpx;
-  border-radius: 14rpx;
-  text-align: center;
-  border: 1rpx solid rgba(255,255,255,0.15);
-  background: rgba(255, 255, 255, 0.03);
-  animation: z-in 0.5s ease-out backwards;
-  --c: #ffffff;
-  --c-rgb: 255,255,255;
+.zp {
+  width: 100%;
+  height: 360rpx;
 }
-.z-card:active { transform: scale(0.95); }
-@keyframes z-in {
-  from { opacity: 0; transform: scale(0.9); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-.z-name {
-  font-size: 30rpx;
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.z-element {
-  font-size: 22rpx;
-  margin-top: 6rpx;
-  letter-spacing: 2rpx;
-  color: var(--c);
-}
-
-.z-fire   { --c: #ff7b7b; --c-rgb: 255,123,123; border-color: rgba(255,123,123,0.5); }
-.z-earth  { --c: #f0c66d; --c-rgb: 240,198,109; border-color: rgba(240,198,109,0.5); }
-.z-air    { --c: #5fd9d9; --c-rgb: 95,217,217; border-color: rgba(95,217,217,0.5); }
-.z-water  { --c: #9b8bff; --c-rgb: 155,139,255; border-color: rgba(155,139,255,0.5); }
-.z-fire,
-.z-earth,
-.z-air,
-.z-water { box-shadow: 0 0 10rpx rgba(var(--c-rgb), 0.2); }
-
-.legend {
-  margin-top: 50rpx;
+.zp-item {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 36rpx;
+  color: #ffffff;
+  letter-spacing: 3rpx;
+}
+/* 中间选中行：主题色高亮 band */
+.zp-ind {
+  height: 90rpx;
+  background: rgba(var(--theme-rgb), 0.10);
+  border-top: 1rpx solid rgba(var(--theme-rgb), 0.6);
+  border-bottom: 1rpx solid rgba(var(--theme-rgb), 0.6);
+}
+/* 上下渐隐，让非选中项融进背景 */
+.zp-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 135rpx;
+  pointer-events: none;
+  z-index: 2;
+}
+.zp-fade-top {
+  top: 0;
+  background: linear-gradient(to bottom, #0a0a1a 8%, rgba(10, 10, 26, 0));
+}
+.zp-fade-bottom {
+  bottom: 0;
+  background: linear-gradient(to top, #0a0a1a 8%, rgba(10, 10, 26, 0));
+}
+
+/* 预览卡 */
+.preview {
+  margin-top: 32rpx;
+  padding: 36rpx 30rpx;
+  text-align: center;
+}
+.pv-emoji {
+  font-size: 72rpx;
+  line-height: 1;
+  text-shadow: 0 0 24rpx rgba(var(--theme-rgb), 0.6);
+}
+.pv-main {
+  margin-top: 18rpx;
+  display: flex;
+  align-items: baseline;
   justify-content: center;
   gap: 14rpx;
 }
-
-.legend-item {
-  font-size: 22rpx;
-  padding: 8rpx 16rpx;
-  border-radius: 8rpx;
-  border: 1rpx solid currentColor;
-  opacity: 0.85;
+.pv-element {
+  font-size: 26rpx;
+  color: var(--theme);
+  letter-spacing: 2rpx;
 }
-.legend-item.z-fire   { color: #ff7b7b; }
-.legend-item.z-earth  { color: #f0c66d; }
-.legend-item.z-air    { color: #5fd9d9; }
-.legend-item.z-water  { color: #9b8bff; }
+.pv-sign {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 3rpx;
+  text-shadow: 0 0 16rpx rgba(var(--theme-rgb), 0.5);
+}
+.pv-desc {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 1rpx;
+}
 
+.confirm-btn {
+  display: block;
+  margin-top: 40rpx;
+  text-align: center;
+}

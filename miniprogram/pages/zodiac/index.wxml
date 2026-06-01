@@ -1,28 +1,38 @@
 <!--pages/zodiac/index.wxml-->
 <view class="page cyber-bg {{themeClass}}">
   <view class="header">
-    <view class="cyber-title">ZODIAC</view>
-    <view class="cyber-subtitle">选择你的星座</view>
+    <view class="cyber-title">星座</view>
+    <view class="cyber-subtitle">选择你的公历（阳历）生日</view>
   </view>
 
-  <view class="grid">
-    <view
-      class="z-card z-{{item.element}}"
-      wx:for="{{list}}"
-      wx:key="name"
-      data-name="{{item.name}}"
-      bindtap="onPick"
-      style="animation-delay: {{index * 50}}ms"
+  <!-- 生日滚轮（包进主题框 + 渐隐遮罩） -->
+  <view class="picker-frame">
+    <picker-view
+      class="zp"
+      indicator-class="zp-ind"
+      value="{{pickerValue}}"
+      bindchange="onPickerChange"
     >
-      <view class="z-name">{{item.name}}</view>
-      <view class="z-element">{{item.elementName}}</view>
-    </view>
+      <picker-view-column>
+        <view wx:for="{{months}}" wx:key="*this" class="zp-item">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{days}}" wx:key="*this" class="zp-item">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+    <view class="zp-fade zp-fade-top"></view>
+    <view class="zp-fade zp-fade-bottom"></view>
   </view>
 
-  <view class="legend">
-    <view class="legend-item z-fire">火象 · 引火者</view>
-    <view class="legend-item z-earth">土象 · 锚</view>
-    <view class="legend-item z-air">风象 · 信号</view>
-    <view class="legend-item z-water">水象 · 深海</view>
+  <!-- 实时预览 -->
+  <view class="preview card card-active">
+    <view class="pv-emoji">{{emoji}}</view>
+    <view class="pv-main">
+      <text class="pv-element">{{element}}</text>
+      <text class="pv-sign">{{sign}}</text>
+    </view>
+    <view class="pv-desc">“{{desc}}”</view>
   </view>
+
+  <view class="cyber-btn cyber-btn-purple confirm-btn" bindtap="onConfirm">确认</view>
 </view>

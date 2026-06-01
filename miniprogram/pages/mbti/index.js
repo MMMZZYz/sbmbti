@@ -6,7 +6,7 @@ const themeUtil = require('../../utils/theme.js');
 const app = getApp();
 
 Page({
-  data: { list: [], themeClass: 'theme-default' },
+  data: { list: [], themeClass: 'theme-default', mode: 'choose' },
 
   onShow() {
     app._refreshTheme && app._refreshTheme();
@@ -25,6 +25,18 @@ Page({
       selected: current && current.type === code,
     }));
     this.setData({ list });
+  },
+
+  goSelect() {
+    this.setData({ mode: 'select' });
+  },
+
+  goQuiz() {
+    wx.navigateTo({ url: '/pages/mbtiQuiz/index' });
+  },
+
+  backToChoose() {
+    this.setData({ mode: 'choose' });
   },
 
   onPick(e) {

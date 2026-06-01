@@ -6,6 +6,11 @@ App({
   onLaunch: function () {
     this.globalData = {};
     this._refreshTheme();
+    try {
+      this.globalData.avatarUrl = wx.getStorageSync('user_avatar_url') || '';
+    } catch (e) {
+      this.globalData.avatarUrl = '';
+    }
   },
   // 由各页面 onShow 调用，确保 MBTI 完成/重测后主题色实时同步
   _refreshTheme() {

@@ -1,0 +1,36 @@
+<!--pages/mbtiQuiz/index.wxml-->
+<view class="page cyber-bg {{themeClass}}">
+
+  <view class="top">
+    <view class="progress-track">
+      <view class="progress-fill" style="width: {{idx * 100 / total}}%"></view>
+    </view>
+    <view class="counter">{{idx + 1}} / {{total}}</view>
+  </view>
+
+  <view class="q-wrap">
+    <view class="q-tag">凭第一感觉选</view>
+    <view wx:if="{{previousEcho}}" class="answer-echo">{{previousEcho}}</view>
+    <view class="q-text">{{q}}</view>
+  </view>
+
+  <view class="scale">
+    <view class="scale-labels">
+      <text>不同意</text>
+      <text>同意</text>
+    </view>
+    <view class="dots">
+      <view
+        wx:for="{{dots}}" wx:key="*this"
+        class="dot-wrap {{selectedValue === item || answers[idx] === item ? 'dot-wrap-sel' : ''}}"
+        data-v="{{item}}"
+        bindtap="onChoose"
+      >
+        <view class="dot dot-{{item}}"></view>
+        <text class="dot-text">{{item === 0 ? '很不' : item === 1 ? '偏不' : item === 2 ? '中间' : item === 3 ? '偏同' : '很同'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="back-link" bindtap="onBack">{{idx > 0 ? '← 上一题' : '← 返回'}}</view>
+</view>

@@ -1,0 +1,56 @@
+<!--pages/fullReport/index.wxml-->
+<view class="page cyber-bg {{themeClass}}" wx:if="{{report}}">
+  <view class="report-head">
+    <view class="head-kicker">{{report.archiveTitle}} · {{report.doneCount}}/8</view>
+    <view class="head-title">{{report.heroType || '临时档案'}}</view>
+    <view class="head-sub">{{report.heroTitle || report.nickname}}</view>
+    <view class="head-code">{{report.code}}</view>
+  </view>
+
+  <view class="summary card card-active">
+    <view class="section-title">综合速写</view>
+    <view class="summary-text">{{report.shortSummary}}</view>
+    <view wx:if="{{report.persona}}" class="persona-text">{{report.persona}}</view>
+  </view>
+
+  <view class="section-title block-title">八维解读</view>
+  <view class="dimension-list">
+    <view
+      wx:for="{{report.cells}}"
+      wx:key="key"
+      class="dim-card card {{item.done ? 'card-active' : 'dim-missing'}}"
+    >
+      <view class="dim-top">
+        <view class="dim-name">
+          <text class="dim-emoji">{{item.emoji}}</text>
+          <text>{{item.name}}</text>
+        </view>
+        <text class="dim-status {{item.isQuick ? 'dim-status-quick' : ''}}">{{item.statusText}}</text>
+      </view>
+      <view class="dim-type">{{item.typeCode || '未扫描'}}</view>
+      <view wx:if="{{item.label && item.label !== item.typeCode}}" class="dim-label">{{item.label}}</view>
+      <view class="dim-desc">{{item.desc}}</view>
+
+      <view wx:if="{{item.bars && item.bars.length}}" class="bars">
+        <view wx:for="{{item.bars}}" wx:for-item="bar" wx:key="type" class="bar-row">
+          <text class="bar-name">{{bar.label}}</text>
+          <view class="bar-track">
+            <view class="bar-fill {{bar.isWinner ? 'bar-winner' : ''}}" style="width: {{bar.pct}}%"></view>
+          </view>
+          <text class="bar-pct">{{bar.pct}}%</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="long-card card">
+    <view class="section-title">完整串联</view>
+    <view class="long-text">{{report.longSummary}}</view>
+  </view>
+
+  <view class="actions">
+    <view class="cyber-btn cyber-btn-purple" bindtap="goHome">返回首页</view>
+  </view>
+
+  <view class="disclaimer">本测试结果仅供娱乐参考，不构成心理、医学或其他专业建议。</view>
+</view>

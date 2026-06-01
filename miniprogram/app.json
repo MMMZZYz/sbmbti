@@ -2,8 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/mbti/index",
+    "pages/mbtiQuiz/index",
     "pages/zodiac/index",
-    "pages/result/index"
+    "pages/dimResult/index",
+    "pages/fullReport/index"
   ],
   "subpackages": [
     {

@@ -2,11 +2,11 @@
 // 4 个分组：NT 紫 / NF 绿 / SJ 蓝 / SP 橙；未做 MBTI 时为中性银
 
 const GROUP = {
-  nt: { name: '分析师', color: '#9b6bff', rgb: '155,107,255' },
-  nf: { name: '外交官', color: '#5fd9a8', rgb: '95,217,168' },
-  sj: { name: '守护者', color: '#5fa8ff', rgb: '95,168,255' },
-  sp: { name: '探险家', color: '#ff9b5f', rgb: '255,155,95' },
-  default: { name: '中性', color: '#a0a8c0', rgb: '160,168,192' },
+  nt: { name: '分析师', color: '#9b6bff', rgb: '155,107,255', icon: '🧠', slogan: '理性建构者' },
+  nf: { name: '外交官', color: '#5fd9a8', rgb: '95,217,168', icon: '🕊', slogan: '理想共鸣者' },
+  sj: { name: '守护者', color: '#5fa8ff', rgb: '95,168,255', icon: '🛡', slogan: '秩序压舱石' },
+  sp: { name: '探险家', color: '#ff9b5f', rgb: '255,155,95', icon: '🔥', slogan: '当下行动派' },
+  default: { name: '中性', color: '#a0a8c0', rgb: '160,168,192', icon: '🌀', slogan: '未解锁' },
 };
 
 const TYPE_TO_GROUP = {
@@ -55,13 +55,36 @@ function avatarOf(mbtiType) {
   return TYPE_AVATAR[String(mbtiType).toUpperCase()] || TYPE_AVATAR[''];
 }
 
+// 各 MBTI 类型在人群中的大致占比（公开统计，用于"稀有度"钩子）
+const TYPE_RARITY = {
+  INFJ: 1.5, ENTJ: 1.8, INTJ: 2.1, ENFJ: 2.5,
+  ENTP: 3.2, INTP: 3.3, ESTP: 4.3, INFP: 4.4,
+  ISTP: 5.4, ENFP: 8.1, ESFP: 8.5, ESTJ: 8.7,
+  ISFP: 8.8, ISTJ: 11.6, ESFJ: 12.3, ISFJ: 13.8,
+};
+
+// 返回 { pct: '2.1', tier: '人群罕见', rare: true } 或 null
+function rarityOf(mbtiType) {
+  if (!mbtiType) return null;
+  const pct = TYPE_RARITY[String(mbtiType).toUpperCase()];
+  if (pct == null) return null;
+  let tier;
+  if (pct < 2.5) tier = '人群罕见';
+  else if (pct < 5) tier = '少见类型';
+  else if (pct < 9) tier = '常见类型';
+  else tier = '大众款';
+  return { pct: String(pct), tier, rare: pct < 5 };
+}
+
 module.exports = {
   GROUP,
   TYPE_TO_GROUP,
   TYPE_AVATAR,
+  TYPE_RARITY,
   groupOf,
   infoOf,
   themeClassOf,
   avatarOf,
+  rarityOf,
 };
 

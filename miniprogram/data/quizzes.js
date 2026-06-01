@@ -77,7 +77,7 @@ const QUIZZES = {
   ],
 
   stress: [
-    { q: 'deadline 突然提前，你的第一反应是？', options: [
+    { q: '截止时间突然提前，你的第一反应是？', options: [
       { text: '先问问周围的人需不需要帮忙，把自己的事先放一放', type: 'fawn' },
       { text: '立刻重新规划，马上开始干', type: 'fight' },
       { text: '脑子一片空白，坐在那里动不了', type: 'freeze' },
@@ -206,11 +206,11 @@ const QUIZZES = {
       { text: '不怎么说话，但私下会找人单独聊', type: 'lone' },
       { text: '潜水为主，偶尔冒泡', type: 'observer' },
     ]},
-    { q: '你觉得社交对你来说是？', options: [
-      { text: '充电器，越社交越有劲', type: 'social' },
-      { text: '连接器，我喜欢看到人和人之间产生化学反应', type: 'connector' },
-      { text: '消耗品，需要事后独处来补充能量', type: 'lone' },
-      { text: '观察窗，我从中获取信息多于输出', type: 'observer' },
+    { q: '一场你期待已久的聚会结束了，你第一个想做的是？', options: [
+      { text: '回家，终于能一个人了', type: 'lone' },
+      { text: '约下一场，意犹未尽', type: 'social' },
+      { text: '想想把今天认识的哪几个人串起来', type: 'connector' },
+      { text: '在脑子里回放今天某句触动到我的话', type: 'observer' },
     ]},
     { q: '你最不舒服的社交场景是？', options: [
       { text: '强迫我必须表态或者参与讨论', type: 'observer' },
@@ -218,11 +218,11 @@ const QUIZZES = {
       { text: '被要求成为话题中心，所有人看着我', type: 'lone' },
       { text: '一个人坐着没人聊天，冷场', type: 'social' },
     ]},
-    { q: '回顾你的社交方式，你觉得自己更像？', options: [
-      { text: '一块电池，需要人群充电', type: 'social' },
-      { text: '一盏台灯，只照亮需要的地方，不大范围发光', type: 'lone' },
-      { text: '一个路由器，让不同的人连接在一起', type: 'connector' },
-      { text: '一台摄像机，记录和观察多于参与', type: 'observer' },
+    { q: '搬到新城市三个月，你的社交状态大概是？', options: [
+      { text: '活动已经排满，认识了一堆新朋友', type: 'social' },
+      { text: '有一两个走近了，其他的还在远处看着', type: 'lone' },
+      { text: '已经把好几个不同圈子的人互相介绍过了', type: 'connector' },
+      { text: '知道很多人的名字和习惯，但大多数人不太了解我', type: 'observer' },
     ]},
   ],
 
@@ -263,11 +263,11 @@ const QUIZZES = {
       { text: '里面有我很多付出，只是没人看见', type: 'support' },
       { text: '是我在背后推动的结果', type: 'director' },
     ]},
-    { q: '如果你的人生是一部电影，你希望自己是？', options: [
-      { text: '最佳配角，没有我主角走不到最后', type: 'support' },
-      { text: '主角，所有故事围绕我展开', type: 'lead' },
-      { text: '编剧，我写好了剧本让别人来演', type: 'writer' },
-      { text: '导演，我决定故事怎么走', type: 'director' },
+    { q: '一件大事做成了，庆功宴上你最想要的是？', options: [
+      { text: '被推到前面，接受所有人的掌声', type: 'lead' },
+      { text: '看着自己策划的一切顺利收尾，台前不台前都无所谓', type: 'director' },
+      { text: '知道整个项目走的是自己最早提的那个方向', type: 'writer' },
+      { text: '只要大家都在就够了，我做的那部分不需要被说出来', type: 'support' },
     ]},
     { q: '一件事搞砸了，你的第一反应是？', options: [
       { text: '反思最初的方案是不是有漏洞', type: 'writer' },
@@ -293,11 +293,11 @@ const QUIZZES = {
       { text: '可靠，关键时刻总会出现', type: 'support' },
       { text: '点子很多，脑子转得很快', type: 'writer' },
     ]},
-    { q: '回顾你的人生，你觉得自己更像？', options: [
-      { text: '一个支柱，很多人靠着我但没人注意到我在', type: 'support' },
-      { text: '一个开路者，走在最前面', type: 'lead' },
-      { text: '一个造梦者，把想象变成别人的现实', type: 'writer' },
-      { text: '一个设计师，设计了很多人的轨迹', type: 'director' },
+    { q: '你最享受哪种局面？', options: [
+      { text: '目标清晰，所有人跟着我往前冲', type: 'lead' },
+      { text: '我构想的方向在别人手里落地了，比预期还好', type: 'writer' },
+      { text: '前面的人不知道，但背后的线都是我串的', type: 'director' },
+      { text: '默默做了一件很重要的事，但不需要被提起', type: 'support' },
     ]},
   ],
 
@@ -377,11 +377,11 @@ const QUIZZES = {
   ],
 
   jung: [
-    { q: '你觉得自己活着最核心的驱动力是？', options: [
-      { text: '连接一些东西，让身边的人感到被爱', type: 'emotion' },
-      { text: '改变一些东西，留下自己的印记', type: 'power' },
-      { text: '体验一些东西，活得足够自由', type: 'freedom' },
-      { text: '看透一些东西，不被表象欺骗', type: 'wisdom' },
+    { q: '做一个重要决定的时候，你最先想到的是？', options: [
+      { text: '这件事会对身边的人带来什么影响', type: 'emotion' },
+      { text: '这件事能不能真的改变什么', type: 'power' },
+      { text: '这件事之后，我会不会后悔没有试过', type: 'freedom' },
+      { text: '这件事背后的逻辑站不站得住脚', type: 'wisdom' },
     ]},
     { q: '你最无法忍受的状态是？', options: [
       { text: '被困住，每天重复同样的生活', type: 'freedom' },
@@ -443,14 +443,56 @@ const QUIZZES = {
       { text: '完全脱离日常，进入一种全新的体验', type: 'freedom' },
       { text: '一个人安静地想透一件事，感觉世界清晰了', type: 'wisdom' },
     ]},
-    { q: '如果用一句话描述你和世界的关系，你会选？', options: [
-      { text: '我看见了别人看不见的，所以我清醒', type: 'wisdom' },
-      { text: '我来了，我看见了，我改变了', type: 'power' },
-      { text: '我在这里，所以你不孤单', type: 'emotion' },
-      { text: '我不属于任何地方，所以我哪里都能去', type: 'freedom' },
+    { q: '你在做一件自己真正相信的事，但遭遇了很大的阻力，你会？', options: [
+      { text: '重新检验自己的判断，确认没有被情绪蒙蔽', type: 'wisdom' },
+      { text: '更坚定，阻力越大说明这件事越值得', type: 'power' },
+      { text: '先照顾好身边受影响的人，再想下一步', type: 'emotion' },
+      { text: '重新找一条路，不一定非要走这条', type: 'freedom' },
     ]},
   ],
 };
+
+// MBTI 圆点量表题库（原创口语版）
+// 每题：q 陈述；pos 同意时偏向的字母；neg 不同意时偏向的字母
+// 选项 5 档（非常不同意 → 非常同意），权重 -2 ~ +2
+const MBTI_QUIZ = [
+  { q: '一堆人待久了，我不但不累，反而越来越来劲。', pos: 'E', neg: 'I' },
+  { q: '我经常想着想着就飘到“以后会怎样”“万一……”上面去。', pos: 'N', neg: 'S' },
+  { q: '做决定我先看道理通不通，谁会不高兴是其次。', pos: 'T', neg: 'F' },
+  { q: '计划被临时打乱我会明显不爽，喜欢按部就班。', pos: 'J', neg: 'P' },
+
+  { q: '有啥想法我习惯当场就说出来，边说边想。', pos: 'E', neg: 'I' },
+  { q: '比起一件事具体怎么做，我更爱琢磨它到底意味着什么。', pos: 'N', neg: 'S' },
+  { q: '朋友找我吐槽，我经常忍不住先帮他分析问题在哪。', pos: 'T', neg: 'F' },
+  { q: '事情没定下来悬在那儿，我心里会一直惦记着。', pos: 'J', neg: 'P' },
+
+  { q: '周末与其一个人宅着，我更想约人出去热闹一下。', pos: 'E', neg: 'I' },
+  { q: '我脑子里点子一大堆，但落地执行常常是另一回事。', pos: 'N', neg: 'S' },
+  { q: '就算是熟人，是非对错我也不太爱和稀泥。', pos: 'T', neg: 'F' },
+  { q: '我习惯提前安排好，列清单、定计划让我安心。', pos: 'J', neg: 'P' },
+
+  { q: '认识新朋友对我来说挺自然的，不太费劲。', pos: 'E', neg: 'I' },
+  { q: '别人随口说件事，我容易自己脑补出一堆背后的可能。', pos: 'N', neg: 'S' },
+  { q: '有人说过我太直、不太顾别人情绪。', pos: 'T', neg: 'F' },
+  { q: '“先干了再说”我不太行，得先把步骤想清楚。', pos: 'J', neg: 'P' },
+];
+
+// 计算 MBTI：answers 为各题所选档位(0~4)，平局用兜底 I/N/F/P
+function scoreMbti(answers) {
+  const sum = { EI: 0, SN: 0, TF: 0, JP: 0 };
+  const axisOf = { E: 'EI', I: 'EI', N: 'SN', S: 'SN', T: 'TF', F: 'TF', J: 'JP', P: 'JP' };
+  MBTI_QUIZ.forEach((item, i) => {
+    const v = (answers[i] == null ? 2 : answers[i]) - 2; // -2 ~ +2，正=pos 方向
+    sum[axisOf[item.pos]] += v;
+  });
+  const pick = (s, posL, negL, def) => (s > 0 ? posL : s < 0 ? negL : def);
+  return (
+    pick(sum.EI, 'E', 'I', 'I') +
+    pick(sum.SN, 'N', 'S', 'N') +
+    pick(sum.TF, 'T', 'F', 'F') +
+    pick(sum.JP, 'J', 'P', 'P')
+  );
+}
 
 // 计算答题结果：返回 { winner, counts }
 //   winner: 票数最高的 type；平局时按各 type 在题库中的 type 字典序优先
@@ -471,4 +513,4 @@ function calcQuizResult(answers) {
   return { winner, counts };
 }
 
-module.exports = { QUIZZES, calcQuizResult };
+module.exports = { QUIZZES, calcQuizResult, MBTI_QUIZ, scoreMbti };

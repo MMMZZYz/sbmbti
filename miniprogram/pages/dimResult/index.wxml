@@ -1,0 +1,31 @@
+<!--pages/dimResult/index.wxml-->
+<view class="page cyber-bg {{themeClass}}">
+
+  <!-- 维度标签 -->
+  <view class="dim-tag">
+    <text class="dim-emoji">{{dimEmoji}}</text>
+    <text class="dim-name">{{dimName}}</text>
+  </view>
+
+  <!-- 结果主体 -->
+  <view class="result-hero">
+    <view class="result-type">{{typeCode}}</view>
+    <view wx:if="{{nickname && nickname !== typeCode}}" class="result-nick">{{nickname}}</view>
+    <view class="result-desc">{{desc}}</view>
+    <view class="status-badge {{isQuick ? 'status-quick' : ''}}">{{statusText}}</view>
+  </view>
+
+  <!-- 详情解读 -->
+  <view class="detail-card card card-active">
+    <view class="detail-section-title">档案解读</view>
+    <view class="detail-text">{{detail}}</view>
+  </view>
+
+  <!-- 操作区 -->
+  <view class="actions">
+    <view class="cyber-btn cyber-btn-purple retake-btn" bindtap="onRetake">重新测试此维度</view>
+  </view>
+
+  <view class="disclaimer">本测试结果仅供娱乐参考，不构成心理、医学或其他专业建议。</view>
+
+</view>
